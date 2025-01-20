@@ -174,7 +174,7 @@
     <!-- Background Video -->
     <div class="video-container">
         <!-- Default Video for Larger Screens -->
-        <video autoplay muted playsinline>
+        <video autoplay muted playsinline id="video">
 
             <source class="default-video" src="./images/1921-1_small.mp4" type="video/mp4">
             <source class="mobile-video" src="images/1921-1_small.webm" type="video/webm">
@@ -208,6 +208,19 @@
             <i class="fas fa-user-plus"></i>
         </a>
     </nav>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function(){
+            const video = document.getElementById("video");
+
+            video.play().catch((error=>{
+                console.log("error playing video", error);
+            }));
+        }
+        )
+
+    </script>
 </body>
 
 </html>
