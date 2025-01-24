@@ -13,6 +13,48 @@
             height: 100vh;
             overflow: hidden;
             background: #030303;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* For small screens, center the video and maintain its original aspect ratio */
+        @media (max-width: 768px) {
+            .video-container {
+                width: 100%;
+                height: auto;
+            }
+
+            .video-container video {
+                position: relative;
+                top: auto;
+                left: auto;
+                transform: none;
+                height: auto;
+                width: 100%;
+                max-height: 70vh; /* Adjust to control the video height */
+                object-fit: contain;
+            }
         }
 
         /* Floating Toggle Menu Styles */
@@ -50,7 +92,6 @@
             transition: transform 0.2s ease-in-out;
         }
 
-        /* Hamburger Icon */
         .hamburger {
             width: 20px;
             height: 2px;
@@ -88,12 +129,10 @@
             transform: translate3d(0, 0, 0) rotate(-45deg);
         }
 
-        /* Menu Items Animation */
         .menu-open:checked~.menu-item {
             transform: scale(1);
         }
 
-        /* Menu items moving to the left when checked */
         .menu-open:checked~.menu-item:nth-child(3) {
             transition-duration: 190ms;
             transform: translate3d(-45px, 0, 0);
@@ -123,59 +162,14 @@
             background: white;
             color: #257704;
         }
-
-        .video-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            z-index: 2;
-        }
-
-        /* Both videos will cover the screen */
-        .video-container video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Hide the default video for small screens */
-        .video-container .default-video {
-            display: block;
-        }
-
-        /* Show mobile video only for smaller screens */
-        .video-container .mobile-video {
-            display: none;
-        }
-
-        /* For mobile screens, show the mobile video and hide the default video */
-        @media (max-width: 768px) {
-            .video-container .default-video {
-                display: none;
-            }
-
-            .video-container .mobile-video {
-                display: block;
-            }
-        }
     </style>
 </head>
 
 <body>
     <!-- Background Video -->
     <div class="video-container">
-        <!-- Default Video for Larger Screens -->
-        <video autoplay muted playsinline class="default-video">
+        <video autoplay muted playsinline>
             <source src="./images/1921logovideo.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-
-        <!-- Mobile Video for Smaller Screens -->
-        <video autoplay muted playsinline class="mobile-video">
-            <source src="images/1921logovideosmall.webm" type="video/webm">
             Your browser does not support the video tag.
         </video>
     </div>
@@ -208,7 +202,7 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const video = document.getElementById("video");
+            const video = document.querySelector("video");
 
             video.play().catch((error) => {
                 console.log("Error playing video:", error);
