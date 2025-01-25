@@ -16,11 +16,27 @@
         @import url('https://fonts.googleapis.com/css?family=Abel');
 
         body {
+            height: 100%;
             margin: 0;
             font-family: "Roboto", sans-serif;
             color: white;
-            /* background-image: url("images/herearesomepossiblebackgrounds/88d6ab5e-0de3-4a35-80e8-122195f304c1.jpg"); */
-            background: #000;
+            background-image: url("images/ud3.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: -1;
         }
 
         h1 {
