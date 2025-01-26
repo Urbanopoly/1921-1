@@ -4,208 +4,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1921 Project</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="style.css">
+    <title>1921</title>
     <style>
-       
         body {
-            margin: 0;
-            height: 100vh;
-            overflow: hidden;
-            background: #030303;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .video-container {
+            font-family: sans-serif;
             position: relative;
+            margin: 0;
+            font-family: sans-serif;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            z-index: 2;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            background: url(images/background/envato-labs-ai-6a56ecbf-c0dc-431f-b2d3-41ad62891b91.jpg) center/cover no-repeat;
+            z-index: -1;
         }
 
-        .video-container video {
+        body::after {
+            content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            background: rgba(8, 8, 8, 0.2);
+            z-index: -1;
         }
 
-        @media (max-width: 768px) {
-            .video-container {
-                width: 100%;
-                height: auto;
-            }
-
-            .video-container video {
-                position: relative;
-                top: auto;
-                left: auto;
-                transform: none;
-                height: auto;
-                width: 100%;
-                max-height: 70vh; 
-                object-fit: contain;
-            }
-        }
-        .menu {
-            position: fixed;
-            top: 20px;
-            right: 60px;
-            z-index: 10;
+        .container {
+            position: relative;
+            z-index: 1;
+            background: rgba(7, 7, 7, 0.3);
         }
 
-        .menu-item,
-        .menu-open-button {
-            background: white;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            position: absolute;
-            color: black;
-            text-align: center;
-            line-height: 40px;
-            transform: scale(0);
-            transform-origin: center;
-            transition: transform 0.2s ease-out;
-            font-size: 16px;
-            cursor: pointer;
+        .headingtop,
+        .para,
+        .button-container {
+            position: relative;
+            z-index: 1;
+
         }
 
-        .menu-open {
-            display: none;
+        .headingtop {
+            font-weight: 900;
         }
 
-        .menu-open-button {
-            z-index: 11;
-            transform: scale(1);
-            transition: transform 0.2s ease-in-out;
+        .para {
+            font-family: sans-serif;
+            font-weight: 100 !important;
         }
 
-        .hamburger {
-            width: 20px;
-            height: 2px;
-            background: black;
-            display: block;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            margin-left: -10.5px;
-            margin-top: -1.5px;
-            transition: transform 200ms;
-        }
+        .button-container {
+            font-weight: 400;
 
-        .hamburger-1 {
-            transform: translate3d(0, -6px, 0);
-        }
-
-        .hamburger-2 {
-            transform: translate3d(0, 0, 0);
-        }
-
-        .hamburger-3 {
-            transform: translate3d(0, 6px, 0);
-        }
-
-        .menu-open:checked+.menu-open-button .hamburger-1 {
-            transform: translate3d(0, 0, 0) rotate(45deg);
-        }
-
-        .menu-open:checked+.menu-open-button .hamburger-2 {
-            transform: translate3d(0, 0, 0) scale(0.1, 1);
-        }
-
-        .menu-open:checked+.menu-open-button .hamburger-3 {
-            transform: translate3d(0, 0, 0) rotate(-45deg);
-        }
-
-        .menu-open:checked~.menu-item {
-            transform: scale(1);
-        }
-
-        .menu-open:checked~.menu-item:nth-child(3) {
-            transition-duration: 190ms;
-            transform: translate3d(-45px, 0, 0);
-        }
-
-        .menu-open:checked~.menu-item:nth-child(4) {
-            transition-duration: 290ms;
-            transform: translate3d(-90px, 0, 0);
-        }
-
-        .menu-open:checked~.menu-item:nth-child(5) {
-            transition-duration: 390ms;
-            transform: translate3d(-135px, 0, 0);
-        }
-
-        .menu-open:checked~.menu-item:nth-child(6) {
-            transition-duration: 490ms;
-            transform: translate3d(-180px, 0, 0);
-        }
-
-        .menu-open:checked~.menu-item:nth-child(7) {
-            transition-duration: 490ms;
-            transform: translate3d(-225px, 0, 0);
-        }
-
-        .menu-item:hover {
-            background: white;
-            color: #257704;
         }
     </style>
 </head>
 
-<body>    
-    <!-- Background Video -->
-    <div class="video-container">
-        <video autoplay muted playsinline>
-            <source src="./images/1921logovideo.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+<body>
+
+    <!-- bg animation -->
+    <div class="container">
+
+        <!-- header  -->
+        <nav>
+            <a href="/index.html"><img src="images/1921 logo.png" width="90px" alt="logo"></a>
+            <label for="toggler">
+                <i class="fa fa-bars"></i>
+            </label>
+            <input type="checkbox" id="toggler" name="">
+            <div class="menu">
+                <ul class="list">
+                    <li><a href="/1921-project.html"> About 1921</a></li>
+                    <li><a href="/1921-BC.html"> 1921 BC</a></li>
+                    <li><a href="/1921-fund.html"> The 1921 Fund</a></li>
+                    <li><a href="/join-us.html">Join</a></li>
+                </ul>
+            </div>
+        </nav>
+        <h1 class="topspc headingtop" style="color: white; margin-top: 130px;">Empowering Entrepreneurs</h1>
+        <h2 style="color: white; font-weight: 900;">Transforming Communities</h2>
+        <p class='para'>Through innovative programs and funding solutions, the 1921 Project fosters economic empowerment
+            as well as sustainable community development.
+        </p>
+        <br>
+        <div class="button-container">
+            <a href="/1921-project.html">
+                <button>About 1921 </button>
+            </a>
+            <a href="/1921-BC.html">
+                <button> 1921 BC</button>
+            </a>
+            <a href="/1921-fund.html">
+                <button> 1921 Fund</button>
+            </a>
+
+        </div>
     </div>
-
-    <!-- Floating Toggle Menu -->
-    <nav class="menu">
-        <input type="checkbox" class="menu-open" id="menu-open">
-        <label class="menu-open-button" for="menu-open">
-            <span class="hamburger hamburger-1"></span>
-            <span class="hamburger hamburger-2"></span>
-            <span class="hamburger hamburger-3"></span>
-        </label>
-
-        <a href="/main.html" class="menu-item">
-            <i class="fa fa-home"></i>
-        </a>
-        <a href="/1921-project.html" class="menu-item">
-            <i class="fa fa-info-circle"></i>
-        </a>
-        <a href="/1921-BC.html" class="menu-item">
-            <i class="fas fa-briefcase"></i>
-        </a>
-        <a href="/1921-fund.html" class="menu-item">
-            <i class="fa fa-hand-holding-usd"></i>
-        </a>
-        <a href="/join-us.html" class="menu-item">
-            <i class="fas fa-user-plus"></i>
-        </a>
-    </nav>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const video = document.querySelector("video");
-
-            video.play().catch((error) => {
-                console.log("Error playing video:", error);
-            });
-        });
-    </script>
 </body>
 
 </html>
